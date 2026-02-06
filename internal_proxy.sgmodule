@@ -1,0 +1,11 @@
+#!name=LightAhead Internal Proxy
+#!desc=将 lightahead.cn 及其子域名分流至 172.16.10.168:8080
+
+[Proxy]
+# 定义你的私有代理，名字叫 InternalProxy (可以随便改)
+# 如果是 http 代理请用 http，如果是 socks5 请改为 socks5
+InternalProxy = http, 172.16.10.168, 8080
+
+[Rule]
+# 匹配 lightahead.cn 及其所有子域名，指向上面定义的 InternalProxy
+DOMAIN-SUFFIX,lightahead.cn,InternalProxy
