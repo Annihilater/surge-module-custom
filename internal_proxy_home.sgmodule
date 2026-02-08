@@ -2,7 +2,12 @@
 #!desc=在家通过本地 IKEv2 VPN 容器的 SOCKS5 代理访问公司内网
 
 [Proxy]
-HomeVPN = socks5, 127.0.0.1, 1080, udp-relay=false
+InternalProxy = socks5, 127.0.0.1, 1080, udp-relay=false
 
 [Rule]
-DOMAIN-SUFFIX,lightahead.cn,HomeVPN
+DOMAIN-SUFFIX,lightahead.cn,InternalProxy
+IP-CIDR,192.168.5.0/24,InternalProxy
+IP-CIDR,192.168.15.0/24,InternalProxy
+IP-CIDR,192.168.17.0/24,InternalProxy
+IP-CIDR,192.168.19.0/24,InternalProxy
+IP-CIDR,192.168.20.0/24,InternalProxy
