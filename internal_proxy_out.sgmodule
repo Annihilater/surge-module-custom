@@ -1,5 +1,5 @@
-#!name=LightAhead Internal Proxy (Home)
-#!desc=在家通过本地 IKEv2 VPN 容器的 SOCKS5 代理访问公司内网
+#!name=CompanyVPN
+#!desc=在外地通过本地 IKEv2 VPN 容器的 SOCKS5 代理访问公司内网
 
 [Proxy]
 CompanyVPN = socks5, 127.0.0.1, 1080, udp-relay=false
