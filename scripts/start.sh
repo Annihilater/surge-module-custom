@@ -32,8 +32,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 后台启动服务
+# 后台启动服务（确保在项目根目录运行）
 echo "Starting surge-module-server in background..."
+cd "$PROJECT_DIR"
 nohup "$PROJECT_DIR/target/release/surge-module-server" > "$LOG_FILE" 2>&1 &
 PID=$!
 
