@@ -33,16 +33,123 @@ async fn index() -> Html<String> {
         r#"<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Surge Modules</title>
 <style>
-  body {{ font-family: monospace; max-width: 600px; margin: 40px auto; }}
-  a {{ text-decoration: none; color: #0366d6; }}
-  a:hover {{ text-decoration: underline; }}
-  li {{ margin: 8px 0; }}
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }}
+  .container {{
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    backdrop-filter: blur(10px);
+  }}
+  h1 {{
+    color: #2d3748;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }}
+  .subtitle {{
+    color: #718096;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+  }}
+  .count {{
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-left: 10px;
+  }}
+  ul {{
+    list-style: none;
+  }}
+  li {{
+    margin: 12px 0;
+    transition: transform 0.2s ease;
+  }}
+  li:hover {{
+    transform: translateX(8px);
+  }}
+  a {{
+    display: block;
+    padding: 16px 20px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #2d3748;
+    font-size: 1.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }}
+  a::before {{
+    content: '📦';
+    margin-right: 12px;
+    font-size: 1.2em;
+  }}
+  a:hover {{
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  }}
+  .empty {{
+    text-align: center;
+    padding: 60px 20px;
+    color: #a0aec0;
+    font-size: 1.1em;
+  }}
+  .empty::before {{
+    content: '📭';
+    display: block;
+    font-size: 4em;
+    margin-bottom: 20px;
+  }}
+  footer {{
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #e2e8f0;
+    text-align: center;
+    color: #a0aec0;
+    font-size: 0.9em;
+  }}
 </style>
 </head><body>
-<h2>Surge Modules</h2>
-<ul>{}</ul>
+<div class="container">
+  <h1>🚀 Surge Modules</h1>
+  <div class="subtitle">
+    自定义 Surge 模块管理中心
+    <span class="count">{} 个模块</span>
+  </div>
+  {}
+  <footer>
+    Powered by Rust + Axum
+  </footer>
+</div>
 </body></html>"#,
-        links.join("\n")
+        files.len(),
+        if files.is_empty() {{
+            r#"<div class="empty">暂无模块文件<br>请将 .sgmodule 文件放入 sgmodules 目录</div>"#.to_string()
+        }} else {{
+            format!("<ul>{}</ul>", links.join("\n"))
+        }}
     ))
 }
 
