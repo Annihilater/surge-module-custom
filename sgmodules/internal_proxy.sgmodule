@@ -5,6 +5,7 @@
 # 定义你的私有代理，名字叫 InternalProxy (可以随便改)
 # 如果是 http 代理请用 http，如果是 socks5 请改为 socks5
 InternalProxy = http, 172.16.10.168, 1080
+DIRECT = direct
 
 [Rule]
 # 匹配 lightahead.cn 及其所有子域名，指向上面定义的 InternalProxy
@@ -14,4 +15,4 @@ IP-CIDR,192.168.15.0/24,InternalProxy
 IP-CIDR,192.168.17.0/24,InternalProxy
 IP-CIDR,192.168.19.0/24,InternalProxy
 IP-CIDR,192.168.20.0/24,InternalProxy
-IP-CIDR,172.16.10.0/24,Direct
+IP-CIDR,172.16.10.0/24,InternalProxy
