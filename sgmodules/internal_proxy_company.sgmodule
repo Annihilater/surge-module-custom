@@ -1,0 +1,15 @@
+#!name=CompanyVPN
+#!desc=在外面通过本地 IKEv2 VPN 容器的 SOCKS5 代理访问公司内网
+
+[Proxy]
+CompanyVPN = socks5, 127.0.0.1, 1080, udp-relay=false
+DIRECT = direct
+
+[Rule]
+DOMAIN-SUFFIX,lightahead.cn,CompanyVPN
+IP-CIDR,192.168.5.0/24,CompanyVPN
+IP-CIDR,192.168.15.0/24,CompanyVPN
+IP-CIDR,192.168.17.0/24,CompanyVPN
+IP-CIDR,192.168.19.0/24,CompanyVPN
+IP-CIDR,192.168.20.0/24,CompanyVPN
+IP-CIDR,172.16.10.0/24,CompanyVPN
