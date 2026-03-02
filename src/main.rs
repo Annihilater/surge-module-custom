@@ -191,7 +191,7 @@ fn sgmodules_dir() -> PathBuf {
 async fn main() {
     tracing_subscriber::fmt::init();
 
-    let addr = std::env::var("LISTEN_ADDR").unwrap_or_else(|_| "0.0.0.0:3000".to_string());
+    let addr = std::env::var("LISTEN_ADDR").unwrap_or_else(|_| "0.0.0.0:12345".to_string());
 
     let app = Router::new()
         .route("/", get(index))
