@@ -1,0 +1,15 @@
+#!name=🏢 公司内网访问
+#!desc=lightahead.cn + 内网IP 强制走本地 SOCKS5（最高优先）
+
+[Proxy]
+CompanyVPN = socks5, 172.16.10.168, 1080, udp-relay=true
+
+[Rule]
+DOMAIN-SUFFIX,lightahead.cn,CompanyVPN
+
+IP-CIDR,192.168.5.0/24,CompanyVPN,no-resolve
+IP-CIDR,192.168.15.0/24,CompanyVPN,no-resolve
+IP-CIDR,192.168.17.0/24,CompanyVPN,no-resolve
+IP-CIDR,192.168.19.0/24,CompanyVPN,no-resolve
+IP-CIDR,192.168.20.0/24,CompanyVPN,no-resolve
+IP-CIDR,172.16.10.0/24,CompanyVPN,no-resolve
